@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "title": "Лелі Баг і Супер-Кіт",
+    "description": "Дія мультсеріалу розгортається в Парижі, де лиходій Бражник нацьковує темних метеликів на людей, щоб перетворити звичайних французів на суперлиходіїв. За ситуацією спостерігають на перший погляд звичайні однокласники Марінетт та Адріан, які за найменшої небезпеки перетворюються на супергероїв Леді Баг та Супер-Кота. Водночас герої намагаються зірвати плани Бражника та відновити мир у місті. При цьому вони не розкривають свої справжні особи не лише близьким і родичам, а й одне одному...",
+    "posterUrl": "https://img.usheru.com/eyJidWNrZXQiOiJzdGF0aWMudXNoZXJ1LmNvbSIsImtleSI6ImltZy9jaGFubmVscy9maWxtZS5zdHVkaW9jYW5hbC5kZS9tb3ZpZS1jdXN0b20vbGFkeWJ1Zy1hbmQtY2F0LW5vaXItYXdha2VuaW5nLTJfMzkzM2QxZjgtMWFhMy00NmRlLThiNDEtMmEwZmQ2NjhlYWQ1anBnIiwiZWRpdHMiOnsicmVzaXplIjp7ImZpdCI6ImNvdmVyIn19fQ==",
+    "releaseDate": "2015-09-01",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 25,
+            "title": "Кунг суп",
+            "videoUrl": "https://mega.nz/embed/QfYDBDDY#Qj12IBbmczeuTVdFE0STrzNgGX5kS2rhMWU5wCmDkEY"
+          },
+          {
+            "episodeNumber": 2,
+            "title": "Злолюстратор",
+            "videoUrl": "https://mega.nz/embed/pagCASgD#kQRm8rZbYaXKe-TWs-9n1EEP_MrDgUe7DcnW36jqIv8"
+          },
+          {
+            "episodeNumber": 3,
+            "title": "Леді Вайфай",
+            "videoUrl": "https://mega.nz/embed/1PAQGRiQ#s3EdAv3Un6bVEmCTSqHRhn3BBC5shWiaaDwW7pIiUaQ"
+          }
+        ]
+      },
+      {
+        "seasonNumber": 2,
+        "episodes": [
+          {
+            "episodeNumber": 1,
+            "title": "Episode 1",
+            "videoUrl": "https://mega.nz/embed/QfYDBDDY#Qj12IBbmczeuTVdFE0STrzNgGX5kS2rhMWU5wCmDkEY"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Нікчемний Я",
+    "description": "Для Ґру та його дівчаток розпочинається новий етап життя, адже вони вітають нового члена сім’ї — Ґру молодшого, який точно знає як насолити татові. Проте перед героями постає новий виклик у вигляді небезпечного супротивника, тож на родину чекає грандіозне протистояння...",
+    "posterUrl": "https://uaserials.pro/posters/8915.jpg",
+    "releaseDate": "2010-07-09",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 4,
+            "title": "Нікчемний Я 4",
+            "videoUrl": "https://mega.nz/embed/cLBVRJ5T#iE8eITATVA-gIXNsv-O75bYtlRBGJy6KjdHzuPLiwOI"
+          }
+        ]
+      }
+    ]
+
+  },
+  {
+    "id": 3,
+    "title": "Повний розковбас: Фудтопія",
+    "description": "Після того, як продукти здобувають переконливу перемогу у війні проти людей у супермаркеті, настає довгоочікувана свобода. За розрахунками Жуйкінга продуктова революція стрімко розповсюджується по всій планеті, змушуючи людство сидіти в страху вдома.",
+    "posterUrl": "https://uaserials.pro/posters/8907.jpg",
+    "releaseDate": "2016-10-20",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 1,
+            "title": "Восьма страва",
+            "videoUrl": "https://player.vimeo.com/video/999002340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Вибухові кошенята",
+    "description": "Через те, що Бог ледарює, або шокує всіх своїми ексцентричними витівками, небесна рада змушена вжити рішучих заходів. Сивого старого буквально спускають з неба на землю в подобі кота і залишають йому лише обмежений набір колишніх сил, щоб той повернувся до своїх прямих обов'язків — допомоги людям.",
+    "posterUrl": "https://uaserials.pro/posters/8899.jpg",
+    "releaseDate": "2013-07-08",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 1,
+            "title": "Пілотний епізод",
+            "videoUrl": "https://player.vimeo.com/video/999000317?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          }
+        ]
+      }
+    ]
+  }
+]

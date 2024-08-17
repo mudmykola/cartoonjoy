@@ -31,4 +31,6 @@ dist-ssr/
 # Public files and environment
 public/
 firebase.json
-.env
+*.env
+*/firebase
+automation

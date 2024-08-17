@@ -9,6 +9,7 @@ const toggleMenu = () => {
 
 const menuItems = ref([
   { to: "/", label: "Головна" },
+  { to: "/chat", label: "Чат" },
   { to: "/parents", label: "Для батьків" },
   { to: "/about", label: "Про нас" }
 ]);

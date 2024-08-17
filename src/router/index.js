@@ -3,6 +3,8 @@ import HomePage from '../views/home/HomePage.vue'
 import MovieDetail from '../components/cart/MovieDetails.vue';
 import AboutPage from "../views/about/AboutPage.vue";
 import ParentsPage from "@/views/perents/ParentsPage.vue";
+import ChatPage from "@/views/chat/ChatPage.vue";
+import ProfileSetupComponent from "@/components/chat/ProfileSetupComponent.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +33,21 @@ const router = createRouter({
             component: ParentsPage,
             meta: {title: 'Для батьків'}
         },
+        {
+            path: '/chat',
+            name: 'chat',
+            component: ChatPage,
+            meta: {title: 'Чат'}
+        },
+        {
+            path: '/setup-profile',
+            name: 'setup-profile',
+            component: ProfileSetupComponent,
+            meta: {title: 'Налаштування профілю'}
+        }
+
     ]
+
 })
 
 export default router

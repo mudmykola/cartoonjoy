@@ -4,6 +4,7 @@ import router from "./router";
 import { createPinia } from 'pinia';
 import "./assets/tailwindcss/index.css";
 
+
 const app = createApp(App);
 
 app.use(createPinia());

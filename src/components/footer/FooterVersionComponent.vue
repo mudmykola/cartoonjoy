@@ -1,5 +1,6 @@
 <script setup>
 const version = import.meta.env.VITE_APP_VERSION;
+console.log("Current version:", version);
 </script>
 
 <template>

@@ -70,8 +70,18 @@
         "episodes": [
           {
             "episodeNumber": 1,
-            "title": "Восьма страва",
+            "title": "Перша страва",
             "videoUrl": "https://player.vimeo.com/video/999002340?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          },
+          {
+            "episodeNumber": 2,
+            "title": "Друга страва",
+            "videoUrl": "https://mega.nz/embed/kSICGApS#FdcihjDLwNiSaoKuk1yrCSVJxyfpZpiizZWVnrU2xgM"
+          },
+          {
+            "episodeNumber": 3,
+            "title": "Третя страва",
+            "videoUrl": "https://mega.nz/embed/tahBwBhD#Mb_UwT_T2mAZhFlDz7WiYdIE3vhxKXOcqP9ZTwIqi_U"
           }
         ]
       }
@@ -91,6 +101,64 @@
             "episodeNumber": 1,
             "title": "Пілотний епізод",
             "videoUrl": "https://player.vimeo.com/video/999000317?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Мої пригоди з Суперменом",
+    "description": "Дія розгортається навколо пригод Кларка Кента, який все ще наївний стосовно навколишнього світу та своїх неймовірних здібностей. Він працює стажером у Daily Planet разом з Лоїс Лейн, що прагне стати зіркою журналістських розслідувань, і фотографом-початківцем Джиммі Олсеном, який є за сумісництвом найкращим другом і сусідом Кларка...",
+    "posterUrl": "https://uaserials.pro/posters/7874.jpg",
+    "releaseDate": "2023-08-17",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 1,
+            "title": "Пригоди звичайної людини. Частина перша ",
+            "videoUrl": "https://mega.nz/embed/lKgWVAAJ#UCi8HjH7ftJ0067fi6QgWnWuala60GzIz-3t2vHqPOw"
+          },
+          {
+            "episodeNumber": 2,
+            "title": "Пригоди звичайної людини. Частина друга",
+            "videoUrl": "https://mega.nz/embed/wCQ3XRyR#yLErgaMg8HIyoOSUF-Sf4UrqmN-y25bHosv2HE1WMm4"
+          },
+          {
+            "episodeNumber": 3,
+            "title": "Моє інтерв'ю із Суперменом",
+            "videoUrl": "https://mega.nz/embed/MKhCSLKD#7mocMmqsdkzEclHfBmkZRl8qji0wn6J6SMvLcdgQiVI"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Сила принцес",
+    "description": "Принцеси-подружки із чотирьох фруктолівств — Чорничного, Ківі, Ананасового й Малинового — усіма силами намагаються зробити свої світи кращими....",
+    "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsPhx3WlO6vT1RsiivadFi8UfSND6m0mSaBA&s",
+    "releaseDate": "2023-08-17",
+    "seasons": [
+      {
+        "seasonNumber": 1,
+        "episodes": [
+          {
+            "episodeNumber": 1,
+            "title": "Принцес не зупинити",
+            "videoUrl": "https://mega.nz/embed/pf5gBTjD#w4oEUpULzhZBZjwXEvajEAP44wshoMOUaDwHLYWMDIg"
+          },
+          {
+            "episodeNumber": 2,
+            "title": "Вечірка принцес у саду",
+            "videoUrl": "https://mega.nz/embed/wH5UiRzb#6C7OnhgtidtGIF2Jsnquftr2JoLcvgS7VWHcwyT9sHI"
+          },
+          {
+            "episodeNumber": 3,
+            "title": "Казка про кита й принцес",
+            "videoUrl": "https://mega.nz/embed/db5xzRwI#SestFRsJp5s1DUuwzWaej3AhqO8vkNULc44yzmSdRGA"
           }
         ]
       }

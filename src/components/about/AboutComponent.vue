@@ -1,38 +1,3 @@
-<template>
-  <div class="bg-gray-900 text-white min-h-screen">
-    <div class="bg-gray-800 py-6">
-      <div class="container mx-auto text-center">
-        <h1 class="text-4xl font-bold">Про нас</h1>
-      </div>
-    </div>
-
-    <div class="py-12">
-      <div class="container mx-auto px-4">
-
-        <section class="mb-12">
-          <h2 class="text-3xl font-semibold mb-4">Наше призначення</h2>
-          <p class="text-lg leading-relaxed">
-            {{ mission }}
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-3xl font-semibold mb-4">Наша команда</h2>
-          <div class="flex flex-wrap -mx-4">
-            <div v-for="member in teamMembers" :key="member.id" class="w-full md:w-1/3 px-4 mb-8">
-              <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 ">
-                <img :src="member.image" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
-                <h3 class="text-xl font-semibold mb-2 text-center">{{ member.name }}</h3>
-                <p class="text-gray-400 text-center">{{ member.role }}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from 'vue';
 
@@ -60,32 +25,36 @@ const teamMembers = ref([
 ]);
 </script>
 
-<style scoped>
-.container {
-  max-width: 1200px;
-}
+<template>
+  <div class="bg-gray-900 text-white min-h-screen">
+    <div class="bg-gray-800 py-6">
+      <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold">Про нас</h1>
+      </div>
+    </div>
 
-.bg-gray-800 {
-  background-color: #1f1f1f;
-}
+    <div class="py-12">
+      <div class="container mx-auto px-4">
+        <section class="mb-12">
+          <h2 class="text-3xl font-semibold mb-4">Наше призначення</h2>
+          <p class="text-lg leading-relaxed">
+            {{ mission }}
+          </p>
+        </section>
 
-.bg-gray-900 {
-  background-color: #121212;
-}
-
-.text-gray-400 {
-  color: #b3b3b3;
-}
-
-.border-gray-700 {
-  border-color: #2d2d2d;
-}
-
-.border-gray-600 {
-  border-color: #3c3c3c;
-}
-
-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-</style>
+        <section>
+          <h2 class="text-3xl font-semibold mb-4">Наша команда</h2>
+          <div class="flex flex-wrap -mx-4">
+            <div v-for="member in teamMembers" :key="member.id" class="w-full md:w-1/3 px-4 mb-8">
+              <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                <img :src="member.image" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
+                <h3 class="text-xl font-semibold mb-2 text-center">{{ member.name }}</h3>
+                <p class="text-gray-400 text-center">{{ member.role }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</template>

@@ -26,4 +26,4 @@ dist-ssr
 !/node_modules/!/public/
 !/public/
 !/firebase.json
-!/.firebaserc
+!/.env

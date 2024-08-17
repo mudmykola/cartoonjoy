@@ -12,6 +12,3 @@ const props = defineProps({
     <p class="text-base lg:text-lg text-gray-300" v-html="content"></p>
   </section>
 </template>
-
-<style scoped>
-</style>

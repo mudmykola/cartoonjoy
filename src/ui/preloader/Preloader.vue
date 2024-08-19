@@ -33,7 +33,7 @@ onMounted(() => {
           </div>
         </div>
         <h1 class="text-5xl md:text-8xl font-extrabold text-gradient mt-4 md:mt-8 relative z-20 animate-fade-in-out">CartoonJoy</h1>
-        <p class="text-base md:text-lg text-white text-shadow mt-2 md:mt-4 relative z-20 animate-fade-in-out">Get ready for a world of fun!</p>
+        <p class="text-base md:text-lg text-white text-shadow mt-2 md:mt-4 relative z-20 animate-fade-in-out">Приготуйтеся до світу веселощів!</p>
         <div class="glass-effect absolute inset-0 z-10"></div>
         <div class="shimmer-overlay absolute top-0 left-0 w-full h-full opacity-50 z-5"></div>
       </div>

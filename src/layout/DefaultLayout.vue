@@ -5,7 +5,7 @@ import HeaderComponent from "../components/header/HeaderComponent.vue";
 
 <template>
   <div class="flex flex-col min-h-screen bg-blue-100">
-    <header class="bg-black shadow-md py-4 ">
+    <header class="bg-gray-900 shadow-md py-4 ">
       <HeaderComponent />
     </header>
     <main class="flex-1 p-4">

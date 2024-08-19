@@ -1,0 +1,146 @@
+.preloader {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.preloader-content {
+    position: relative;
+}
+
+.curtain {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    transform: translateY(100%);
+}
+
+.curtain-open {
+    transform: translateY(0);
+}
+
+.preloader-inner {
+    text-align: center;
+}
+
+.loader-wrapper {
+    position: relative;
+}
+
+.loader {
+    animation: bounce 1.5s infinite;
+}
+
+.loader-pulses {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pulse {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 8px;
+    animation: pulse 1.5s infinite;
+    z-index: 30;
+}
+
+.pulse:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.pulse:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.pulse:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-20%);
+    }
+    50% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-out {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, #f06, #f79, #f06);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.text-shadow {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+}
+
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.shimmer-overlay {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+    background-size: 200% 200%;
+    animation: shimmer 2s infinite;
+    z-index: 5;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}

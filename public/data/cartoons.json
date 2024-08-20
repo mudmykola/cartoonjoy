@@ -101,6 +101,11 @@
             "episodeNumber": 1,
             "title": "Пілотний епізод",
             "videoUrl": "https://player.vimeo.com/video/999000317?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          },
+          {
+            "episodeNumber": 2,
+            "title": "Згадати Тартар",
+            "videoUrl": "https://mega.nz/embed/wOwwxLQL#0kbS5lYLhmqp3teI04aMmUuP0yWjHK0RxCVaz_wX8OY"
           }
         ]
       }
@@ -159,6 +164,21 @@
             "episodeNumber": 3,
             "title": "Казка про кита й принцес",
             "videoUrl": "https://mega.nz/embed/db5xzRwI#SestFRsJp5s1DUuwzWaej3AhqO8vkNULc44yzmSdRGA"
+          },
+          {
+            "episodeNumber": 4,
+            "title": "Станція створення -Принцеса-",
+            "videoUrl": "https://mega.nz/embed/pGZlXYTK#LxX_WITKeaCJr4fFtklKUUTc0ENFHBJCIuiRLwNi2BI"
+          },
+          {
+            "episodeNumber": 5,
+            "title": "З Днем народження принцеси Метушня",
+            "videoUrl": "https://mega.nz/embed/8GJ0QRYZ#PbBbVAWJadn5C_dgp_R5jxPre0Z8FQDm8pgx7YCEUKc"
+          },
+          {
+            "episodeNumber": 6,
+            "title": "Принцеса, вимикай світло",
+            "videoUrl": "https://mega.nz/embed/Jegk2LpL#_v20zYgXm3alZFKKJPFbpL7vyTShacbQ5jIfxURXLwI"
           }
         ]
       }

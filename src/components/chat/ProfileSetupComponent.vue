@@ -4,7 +4,6 @@ import { getAuth, signInAnonymously } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 import { database } from '@/firebase';
 import { ref as dbRef, set, onValue } from 'firebase/database';
-import axios from 'axios';
 import Loader from '@/components/chat/Loader.vue';
 
 const auth = getAuth();
@@ -17,8 +16,7 @@ const isLoading = ref(true);
 
 const loadAvatars = async () => {
   try {
-    const response = await axios.get('https://api.multiavatar.com/');
-    avatars.value = Array.from({length: 12}, (_, i) => `https://api.multiavatar.com/${i}.png`);
+    avatars.value = Array.from({length: 12}, (_, i) => `https://robohash.org/avatar${i}?set=set1`);
     if (avatars.value.length > 0) {
       selectedAvatar.value = avatars.value[0];
     }
@@ -155,7 +153,7 @@ onMounted(async () => {
           @click="setupProfile"
           class="bg-red-600 hover:bg-red-700 text-white p-2 rounded w-full font-semibold"
       >
-        Save
+        Зберегти
       </button>
     </div>
   </div>

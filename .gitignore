@@ -33,4 +33,6 @@ public/
 firebase.json
 *.env
 */firebase
-automation
+automation!/data/
+!/data
+!automation

@@ -2,17 +2,12 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-const isMenuOpen = ref(false);
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
-
 const menuItems = ref([
-  { to: '/', label: 'Головна' },
-  { to: '/chat', label: 'Чат' },
-  { to: '/favorites', label: 'Улюблені' },
-  { to: '/parents', label: 'Для батьків' },
-  { to: '/about', label: 'Про нас' },
+  { to: '/', label: 'Головна', icon: 'home' },
+  { to: '/chat', label: 'Чат', icon: 'comments' },
+  { to: '/favorites', label: 'Улюблені', icon: 'star' },
+  { to: '/parents', label: 'Для батьків', icon: 'user' },
+  { to: '/about', label: 'Про нас', icon: 'info-circle' },
 ]);
 
 const route = useRoute();
@@ -21,85 +16,47 @@ const route = useRoute();
 <template>
   <nav class="bg-gray-900 p-4">
     <div class="container mx-auto flex items-center justify-between">
-      <div class="text-white text-3xl font-bold">
+      <div class="text-white text-3xl font-bold lg:hidden">
         <router-link to="/">CartoonJoy</router-link>
       </div>
-      <button
-        @click="toggleMenu"
-        class="lg:hidden text-white focus:outline-none"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          ></path>
-        </svg>
-      </button>
-      <ul class="hidden lg:flex space-x-6">
-        <li v-for="item in menuItems" :key="item.to">
-          <router-link
-            :to="item.to"
-            class="text-white hover:text-red-500"
-            :class="{ 'border-b-2 border-red-500': route.path === item.to }"
-          >
-            {{ item.label }}
-          </router-link>
-        </li>
-      </ul>
-      <transition name="fade">
-        <div
-          v-if="isMenuOpen"
-          class="fixed inset-0 z-50 bg-gray-800 bg-opacity-90 overflow-auto"
-        >
-          <div class="flex flex-col h-full">
-            <button
-              @click="toggleMenu"
-              class="absolute top-4 right-4 text-white text-3xl p-2"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-            <div
-              class="flex flex-col items-center justify-center flex-grow space-y-6"
-            >
-              <ul class="text-white text-2xl space-y-6">
-                <li v-for="item in menuItems" :key="item.to">
-                  <router-link
-                    :to="item.to"
-                    class="text-white hover:text-red-500"
-                    :class="{
-                      'border-b-2 border-red-500': route.path === item.to,
-                    }"
-                    @click="toggleMenu"
-                  >
-                    {{ item.label }}
-                  </router-link>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div class="hidden lg:flex items-center w-full justify-between">
+        <div class="text-white text-3xl font-bold">
+          <router-link to="/">CartoonJoy</router-link>
         </div>
-      </transition>
+        <ul class="flex space-x-6 overflow-x-auto">
+          <li v-for="item in menuItems" :key="item.to">
+            <router-link
+              :to="item.to"
+              class="text-white hover:text-red-500 flex items-center space-x-2"
+              :class="{ 'border-b-2 border-red-500': route.path === item.to }"
+            >
+              <i :class="`fas fa-${item.icon}`"></i>
+              <span>{{ item.label }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="lg:hidden z-50 fixed bottom-0 inset-x-0 bg-gray-800 text-white flex justify-around py-2 border-t border-gray-700 shadow-lg"
+    >
+      <router-link
+        v-for="item in menuItems"
+        :key="item.to"
+        :to="item.to"
+        class="flex flex-col items-center text-xs hover:text-red-500"
+        :class="{ 'text-red-500': route.path === item.to }"
+      >
+        <i :class="`fas fa-${item.icon}`" class="w-6 h-6"></i>
+        <span>{{ item.label }}</span>
+      </router-link>
     </div>
   </nav>
 </template>
+
+<style scoped>
+i {
+  font-size: 1.3rem;
+}
+</style>

@@ -17,11 +17,19 @@ const route = useRoute();
   <nav class="bg-gray-900 p-4">
     <div class="container mx-auto flex items-center justify-between">
       <div class="text-white text-3xl font-bold lg:hidden">
-        <router-link to="/">CartoonJoy</router-link>
+        <router-link to="/"
+          ><p class="bg-red-600 px-2 py-1">
+            Cartoon<span class="text-black">Joy</span>
+          </p></router-link
+        >
       </div>
       <div class="hidden lg:flex items-center w-full justify-between">
         <div class="text-white text-3xl font-bold">
-          <router-link to="/">CartoonJoy</router-link>
+          <router-link class="flex items-center" to="/"
+            ><p class="bg-red-600 px-2 py-1">
+              Cartoon<span class="text-black">Joy</span>
+            </p>
+          </router-link>
         </div>
         <ul class="flex space-x-6 overflow-x-auto">
           <li v-for="item in menuItems" :key="item.to">

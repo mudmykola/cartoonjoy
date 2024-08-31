@@ -23,8 +23,8 @@ const fetchComments = () => {
   onValue(commentsRef, (snapshot) => {
     const data = snapshot.val();
     comments.value = data
-        ? Object.keys(data).map((key) => ({id: key, ...data[key]}))
-        : [];
+      ? Object.keys(data).map((key) => ({ id: key, ...data[key] }))
+      : [];
   });
 };
 
@@ -37,30 +37,38 @@ const noCommentsText = 'Коментарі відсутні.';
 </script>
 
 <template>
-  <div class="comments-section bg-gray-800 p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+  <div
+    class="comments-section bg-gray-800 p-6 rounded-lg shadow-md max-w-4xl mx-auto"
+  >
     <h3 class="text-xl font-bold mb-4 text-white">{{ commentsTitle }}</h3>
 
     <div v-if="visibleComments.length > 0">
       <div
-          v-for="comment in visibleComments"
-          :key="comment.id"
-          class="comment bg-gray-700 p-4 rounded-lg mb-4 shadow-sm"
+        v-for="comment in visibleComments"
+        :key="comment.id"
+        class="comment bg-gray-700 p-4 rounded-lg mb-4 shadow-sm"
       >
         <div class="flex items-center mb-2">
-          <div class="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-3">
+          <div
+            class="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-3"
+          >
             {{ comment.nickname.charAt(0).toUpperCase() }}
           </div>
-          <p class="text-lg font-semibold text-white">{{ comment.nickname || 'Анонім' }}</p>
+          <p class="text-lg font-semibold text-white">
+            {{ comment.nickname || 'Анонім' }}
+          </p>
         </div>
         <p class="comment-text text-gray-300 mb-2">{{ comment.text }}</p>
-        <p class="comment-timestamp text-sm text-gray-400">{{ new Date(comment.timestamp).toLocaleString() }}</p>
+        <p class="comment-timestamp text-sm text-gray-400">
+          {{ new Date(comment.timestamp).toLocaleString() }}
+        </p>
       </div>
     </div>
 
     <div v-if="comments.length > visibleComments.length">
       <button
-          @click="toggleComments"
-          class="text-red-600 font-semibold hover:text-red-500 transition-colors"
+        @click="toggleComments"
+        class="text-red-600 font-semibold hover:text-red-500 transition-colors"
       >
         {{ showAll ? 'Згорнути' : 'Показати більше коментарів' }}
       </button>

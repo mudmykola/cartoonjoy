@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import DefaultLayout from "../../layout/DefaultLayout.vue";
-import HomeComponent from "../../components/home/HomeComponent.vue";
+import DefaultLayout from '../../layout/DefaultLayout.vue';
+import HomeComponent from '../../components/home/HomeComponent.vue';
 import Preloader from '@/ui/preloader/Preloader.vue';
 
 const isLoading = ref(true);

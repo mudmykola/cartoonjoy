@@ -1,14 +1,12 @@
 <script setup>
-import DefaultLayout from "../../layout/DefaultLayout.vue";
-import AboutComponent from "../../components/about/AboutComponent.vue";
+import DefaultLayout from '../../layout/DefaultLayout.vue';
+import AboutComponent from '../../components/about/AboutComponent.vue';
 </script>
 
 <template>
-<DefaultLayout>
-<AboutComponent/>
-</DefaultLayout>
+  <DefaultLayout>
+    <AboutComponent />
+  </DefaultLayout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

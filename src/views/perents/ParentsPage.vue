@@ -1,15 +1,12 @@
 <script setup>
-
-import DefaultLayout from "@/layout/DefaultLayout.vue";
-import ParentsComponent from "@/components/parents/ParentsComponent.vue";
+import DefaultLayout from '@/layout/DefaultLayout.vue';
+import ParentsComponent from '@/components/parents/ParentsComponent.vue';
 </script>
 
 <template>
-<DefaultLayout>
- <ParentsComponent/>
-</DefaultLayout>
+  <DefaultLayout>
+    <ParentsComponent />
+  </DefaultLayout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

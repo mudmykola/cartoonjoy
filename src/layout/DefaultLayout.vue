@@ -1,11 +1,11 @@
 <script setup>
-import FooterComponent from "../components/footer/FooterComponent.vue";
-import HeaderComponent from "../components/header/HeaderComponent.vue";
+import FooterComponent from '../components/footer/FooterComponent.vue';
+import HeaderComponent from '../components/header/HeaderComponent.vue';
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen bg-blue-100">
-    <header class="bg-gray-900 shadow-md py-4 ">
+    <header class="bg-gray-900 shadow-md py-4">
       <HeaderComponent />
     </header>
     <main class="flex-1 p-4">

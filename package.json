@@ -8,7 +8,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "bump-version": "node ./automation/bump-version.js",
-    "deploy": "npm run  bump-version && npm run build  && firebase deploy"
+    "deploy": "npm run  bump-version && npm run build  && firebase deploy",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md,vue,scss,json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "axios": "^1.7.4",
@@ -27,7 +36,10 @@
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "emoji-picker-vue": "^1.0.1",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
     "postcss": "^8.4.41",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.9",
     "vite": "^5.4.0",
     "vue-loader": "^17.4.2"

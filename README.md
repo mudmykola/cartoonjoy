@@ -1,7 +1,8 @@
 🎬 CartoonJoy Website
 
-CartoonJoy is a child-friendly website designed for easy and enjoyable access to cartoons. The site allows users to explore various cartoons, filter them by seasons and episodes, and play them directly on the site.
-🌟 Features
+CartoonJoy is a child-friendly website designed for easy and enjoyable access to
+cartoons. The site allows users to explore various cartoons, filter them by
+seasons and episodes, and play them directly on the site. 🌟 Features
 
     Child-Friendly Design: The website is designed with a vibrant and engaging interface to appeal to children.
     Responsive Layout: Fully responsive, ensuring a seamless experience on both desktop and mobile devices.
@@ -9,8 +10,7 @@ CartoonJoy is a child-friendly website designed for easy and enjoyable access to
     Video Playback: Integrated video player for smooth playback of cartoon episodes.
     Custom Navigation: Easy-to-use, animated navigation panel optimized for small screens.
 
-🚀 Getting Started
-Prerequisites
+🚀 Getting Started Prerequisites
 
 To run this project locally, ensure you have the following installed:
 
@@ -46,26 +46,30 @@ bash
 
 Deployment
 
-You can deploy this project using Vercel, Netlify, or any static site hosting service.
-📹 Video Hosting Options
+You can deploy this project using Vercel, Netlify, or any static site hosting
+service. 📹 Video Hosting Options
 
-To ensure the best experience for users, especially on mobile devices, consider the following video hosting options:
+To ensure the best experience for users, especially on mobile devices, consider
+the following video hosting options:
 
     Vimeo: Upload your videos to YouTube or Vimeo and embed them on the site.
 
 📚 Usage
 
-The website is designed to be intuitive for children. Navigation is simple, with large buttons and clear labels. Videos are organized by cartoons, seasons, and episodes, making it easy for children to find their favorite shows.
-🎨 Design
+The website is designed to be intuitive for children. Navigation is simple, with
+large buttons and clear labels. Videos are organized by cartoons, seasons, and
+episodes, making it easy for children to find their favorite shows. 🎨 Design
 
-The site utilizes Tailwind CSS for a modern and clean design. The color scheme is bright and engaging, with animations that bring the interface to life.
-🛠️ Development
+The site utilizes Tailwind CSS for a modern and clean design. The color scheme
+is bright and engaging, with animations that bring the interface to life. 🛠️
+Development
 
-The project is built using Vite for fast builds and hot module replacement. Vue.js is used for component-based architecture, ensuring reusability and scalability.
-👨‍💻 Contributing
+The project is built using Vite for fast builds and hot module replacement.
+Vue.js is used for component-based architecture, ensuring reusability and
+scalability. 👨‍💻 Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
-Steps to Contribute:
+Contributions are welcome! Please fork the repository and submit a pull request
+with your changes. Steps to Contribute:
 
     Fork the repository.
     Create a new branch (git checkout -b feature-branch).
@@ -76,4 +80,5 @@ Steps to Contribute:
 
 📝 License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. See the LICENSE file for more
+details.

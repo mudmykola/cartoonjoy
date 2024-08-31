@@ -16,7 +16,10 @@ const isLoading = ref(true);
 
 const loadAvatars = async () => {
   try {
-    avatars.value = Array.from({length: 12}, (_, i) => `https://robohash.org/avatar${i}?set=set1`);
+    avatars.value = Array.from(
+      { length: 12 },
+      (_, i) => `https://robohash.org/avatar${i}?set=set1`
+    );
     if (avatars.value.length > 0) {
       selectedAvatar.value = avatars.value[0];
     }
@@ -108,26 +111,34 @@ onMounted(async () => {
 
 <template>
   <div v-if="isLoading">
-    <Loader/>
+    <Loader />
   </div>
   <div v-else class="flex items-center justify-center min-h-screen bg-gray-900">
-    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-md w-full">
+    <div
+      class="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-md w-full"
+    >
       <h1 class="text-2xl font-bold mb-6 text-center">Налаштування профілю</h1>
       <div class="mb-4">
         <label class="block mb-2 text-sm font-medium">Виберіть Аватар:</label>
         <div class="flex flex-wrap space-x-2">
-          <template v-for="(avatar, index) in avatars.slice(0, showAllAvatars ? avatars.length : 6)" :key="index">
+          <template
+            v-for="(avatar, index) in avatars.slice(
+              0,
+              showAllAvatars ? avatars.length : 6
+            )"
+            :key="index"
+          >
             <img
-                :src="avatar"
-                @click="handleAvatarClick(avatar)"
-                :class="{'border-4 border-red-500': selectedAvatar === avatar}"
-                class="w-16 h-16 cursor-pointer rounded-full"
+              :src="avatar"
+              @click="handleAvatarClick(avatar)"
+              :class="{ 'border-4 border-red-500': selectedAvatar === avatar }"
+              class="w-16 h-16 cursor-pointer rounded-full"
             />
           </template>
         </div>
         <button
-            @click="showAllAvatars = !showAllAvatars"
-            class="mt-2 text-sm text-blue-500 hover:underline"
+          @click="showAllAvatars = !showAllAvatars"
+          class="mt-2 text-sm text-blue-500 hover:underline"
         >
           {{ showAllAvatars ? 'Показати менше' : 'Показати все' }}
         </button>
@@ -135,23 +146,25 @@ onMounted(async () => {
       <div class="mb-4">
         <label class="block mb-2 text-sm font-medium">Нікнейм:</label>
         <input
-            v-model="nickname"
-            type="text"
-            placeholder="Введіть свій нікнейм"
-            class="border p-2 w-full rounded bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+          v-model="nickname"
+          type="text"
+          placeholder="Введіть свій нікнейм"
+          class="border p-2 w-full rounded bg-gray-700 border-gray-600 text-white placeholder-gray-400"
         />
       </div>
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-medium">Завантажте свій аватар:</label>
+        <label class="block mb-2 text-sm font-medium"
+          >Завантажте свій аватар:</label
+        >
         <input
-            type="file"
-            @change="handleFileUpload"
-            class="border p-2 w-full rounded bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+          type="file"
+          @change="handleFileUpload"
+          class="border p-2 w-full rounded bg-gray-700 border-gray-600 text-white placeholder-gray-400"
         />
       </div>
       <button
-          @click="setupProfile"
-          class="bg-red-600 hover:bg-red-700 text-white p-2 rounded w-full font-semibold"
+        @click="setupProfile"
+        class="bg-red-600 hover:bg-red-700 text-white p-2 rounded w-full font-semibold"
       >
         Зберегти
       </button>

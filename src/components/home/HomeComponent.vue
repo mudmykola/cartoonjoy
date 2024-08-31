@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, computed } from "vue";
+import { useRouter } from "vue-router";
 
 const featuredMovies = ref([]);
-const searchQuery = ref('');
-const sortOption = ref('newest');
+const searchQuery = ref("");
+const sortOption = ref("newest");
 const router = useRouter();
 
 onMounted(async () => {
@@ -13,36 +13,41 @@ onMounted(async () => {
 
 const fetchMovies = async () => {
   try {
-    const response = await fetch('/data/cartoons.json');
+    const response = await fetch("/data/cartoons.json");
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     const data = await response.json();
     featuredMovies.value = data;
   } catch (error) {
-    console.error('Error fetching movies:', error);
+    console.error("Error fetching movies:", error);
   }
 };
 
 const filteredMovies = computed(() => {
   const query = searchQuery.value.toLowerCase();
-  return featuredMovies.value.filter(movie =>
+  return featuredMovies.value.filter(
+    (movie) =>
       movie.title.toLowerCase().includes(query) ||
-      movie.description.toLowerCase().includes(query)
+      movie.description.toLowerCase().includes(query),
   );
 });
 
 const sortedMovies = computed(() => {
   const movies = [...filteredMovies.value];
-  if (sortOption.value === 'newest') {
-    return movies.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+  if (sortOption.value === "newest") {
+    return movies.sort(
+      (a, b) => new Date(b.releaseDate) - new Date(a.releaseDate),
+    );
   } else {
-    return movies.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+    return movies.sort(
+      (a, b) => new Date(a.releaseDate) - new Date(b.releaseDate),
+    );
   }
 });
 
 const navigateToMovie = (id) => {
-  router.push({ name: 'movie', params: { id } });
+  router.push({ name: "movie", params: { id } });
 };
 </script>
 
@@ -51,17 +56,17 @@ const navigateToMovie = (id) => {
     <h1 class="text-3xl font-bold mb-8">Ласкаво просимо до CartoonJoy</h1>
     <div class="search-section mb-8">
       <input
-          type="text"
-          v-model="searchQuery"
-          placeholder="Пошук мультфільмів..."
-          class="search-input w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        type="text"
+        v-model="searchQuery"
+        placeholder="Пошук мультфільмів..."
+        class="search-input w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </div>
     <div class="sort-section mb-8 flex justify-between items-center">
       <span class="text-lg font-medium">Сортувати за:</span>
       <select
-          v-model="sortOption"
-          class="border rounded-lg p-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        v-model="sortOption"
+        class="border rounded-lg p-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="newest">Найновіші</option>
         <option value="oldest">Найстаріші</option>
@@ -69,21 +74,26 @@ const navigateToMovie = (id) => {
     </div>
     <section class="featured-section mb-8">
       <h2 class="text-2xl font-semibold mb-4">Найкращі мультфільми</h2>
-      <div v-if="sortedMovies.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div
+        v-if="sortedMovies.length > 0"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
         <div
-            v-for="movie in sortedMovies"
-            :key="movie.id"
-            class="movie-card bg-white p-4 border rounded-lg shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
-            @click="navigateToMovie(movie.id)"
+          v-for="movie in sortedMovies"
+          :key="movie.id"
+          class="movie-card bg-white p-4 border rounded-lg shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
+          @click="navigateToMovie(movie.id)"
         >
           <div class="poster-wrapper mb-4">
             <img
-                :src="movie.posterUrl"
-                :alt="`Poster for ${movie.title}`"
-                class="poster-image w-full h-full object-cover rounded-lg"
+              :src="movie.posterUrl"
+              :alt="`Poster for ${movie.title}`"
+              class="poster-image w-full h-full object-cover rounded-lg"
             />
           </div>
-          <h3 class="movie-title text-xl font-semibold mb-2 ">{{ movie.title }}</h3>
+          <h3 class="movie-title text-xl font-semibold mb-2">
+            {{ movie.title }}
+          </h3>
           <p class="movie-description text-gray-600">{{ movie.description }}</p>
         </div>
       </div>
@@ -125,7 +135,8 @@ const navigateToMovie = (id) => {
   height: 100%;
 }
 
-.movie-title, .movie-description {
+.movie-title,
+.movie-description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

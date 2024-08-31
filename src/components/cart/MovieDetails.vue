@@ -54,10 +54,10 @@ const goBack = () => {
 
 <template>
   <DefaultLayout>
-    <div class="p-6 max-w-full mx-auto bg-gray-900 text-white">
+    <div class="p-4 sm:p-6 max-w-full mx-auto bg-gray-900 text-white">
       <button
         @click="goBack"
-        class="mb-4 p-2 bg-red-600 text-white rounded-md flex items-center hover:bg-red-700 transition duration-300"
+        class="mb-4 p-3 bg-red-600 text-white rounded-md flex items-center hover:bg-red-700 transition duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,15 +80,15 @@ const goBack = () => {
           <img
             :src="movieStore.movie.posterUrl"
             alt="Movie Poster"
-            class="w-full h-56 md:h-80 object-cover rounded-md shadow-md"
+            class="w-full h-64 md:h-80 object-cover rounded-md shadow-lg"
           />
         </div>
 
         <div class="flex-1 md:pl-6">
-          <h1 class="text-3xl md:text-4xl font-bold mb-4">
+          <h1 class="text-2xl md:text-3xl font-bold mb-4">
             {{ movieStore.movie.title }}
           </h1>
-          <p class="text-base md:text-lg mb-4">
+          <p class="text-sm md:text-base mb-4">
             {{ movieStore.movie.description }}
           </p>
 
@@ -99,7 +99,7 @@ const goBack = () => {
               class="mb-6"
             >
               <h2
-                class="text-xl md:text-2xl font-semibold mb-2 cursor-pointer flex items-center justify-between p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition duration-300"
+                class="text-lg md:text-xl font-semibold mb-2 cursor-pointer flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition duration-300"
                 @click="movieStore.toggleSeason(season.seasonNumber)"
               >
                 {{ seasonTitle }} {{ season.seasonNumber }}
@@ -133,7 +133,7 @@ const goBack = () => {
                   :class="{
                     'text-red-500': movieStore.currentEpisode === episode,
                   }"
-                  class="mb-2 cursor-pointer hover:underline"
+                  class="mb-2 cursor-pointer hover:underline transition duration-300"
                 >
                   {{ episode.episodeNumber }}. {{ episode.title }}
                 </li>
@@ -144,20 +144,21 @@ const goBack = () => {
       </div>
 
       <div v-if="movieStore.currentEpisode" ref="episodePlayer" class="mt-6">
-        <h3 class="text-xl md:text-2xl font-semibold mb-2">
+        <h3 class="text-lg md:text-xl font-semibold mb-2">
           {{ movieStore.currentEpisode.title }}
         </h3>
         <iframe
           v-if="movieStore.currentEpisode.videoUrl"
           :src="getIframeSrc(movieStore.currentEpisode.videoUrl)"
-          class="w-full h-[50vh] md:h-[80vh]"
+          class="w-full h-[50vh] md:h-[60vh] rounded-md border border-gray-800 shadow-lg"
           frameborder="0"
           allowfullscreen
         ></iframe>
       </div>
+
       <div
         v-if="movieStore.currentEpisode"
-        class="mt-6 flex justify-center space-x-4"
+        class="mt-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
       >
         <button
           @click="
@@ -184,8 +185,9 @@ const goBack = () => {
           {{ buttonNextEpisode }}
         </button>
       </div>
-      <div class="comment">
-        <div v-if="movieStore.currentEpisode" class="mt-8">
+
+      <div class="comment mt-8">
+        <div v-if="movieStore.currentEpisode">
           <MovieComments :movieId="route.params.id" />
         </div>
 

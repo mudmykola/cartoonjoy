@@ -7,8 +7,8 @@ export default {
         center: true,
         padding: '1rem',
       },
-      screen: {
-        lg: '1171px',
+      screens: {
+        '2xl': '1440px',
       },
       colors: {
         primary: '#19453F',

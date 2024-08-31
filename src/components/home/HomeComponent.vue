@@ -90,7 +90,7 @@ const navigateToMovie = (id) => {
         />
         <button
           @click="searchQuery = ''"
-          class="absolute inset-y-0 right-0 px-4 py-2 text-sm bg-gray-800 text-white rounded-r-lg flex items-center justify-center hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="absolute inset-y-0 right-0 px-4 py-2 text-sm bg-white text-black rounded-r-lg flex items-center justify-center hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,7 @@ const navigateToMovie = (id) => {
       </div>
       <select
         v-model="sortOption"
-        class="border rounded-lg p-2 bg-white shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="border rounded-lg p-2 bg-white shadow-sm text-black text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="newest">{{ newestOption }}</option>
         <option value="oldest">{{ oldestOption }}</option>
@@ -129,7 +129,7 @@ const navigateToMovie = (id) => {
           class="relative bg-white p-4 border rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow flex flex-col"
           @click="navigateToMovie(movie.id)"
         >
-          <div class="relative h-48 mb-2 overflow-hidden rounded-lg">
+          <div class="relative h-65 mb-2 overflow-hidden rounded-lg">
             <img
               :src="movie.posterUrl"
               :alt="`Poster for ${movie.title}`"

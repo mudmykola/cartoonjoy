@@ -1,5 +1,5 @@
 <script setup>
-import { defineEmits } from 'vue';
+import {defineEmits} from 'vue';
 
 const emojis = [
   '😀', '😁', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😍',
@@ -21,13 +21,13 @@ const selectEmoji = (emoji) => {
 </script>
 
 <template>
-  <div class="emoji-picker bg-white border border-gray-300 p-2 rounded-lg shadow-lg">
+  <div class="rounded-lg border border-gray-300 bg-white p-2 shadow-lg emoji-picker">
     <div class="grid grid-cols-8 gap-2">
       <span
           v-for="emoji in emojis"
           :key="emoji"
           @click="selectEmoji(emoji)"
-          class="text-xl cursor-pointer hover:bg-gray-100 p-1 rounded"
+          class="cursor-pointer rounded p-1 text-xl hover:bg-gray-100"
       >
         {{ emoji }}
       </span>

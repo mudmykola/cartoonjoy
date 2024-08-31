@@ -49,34 +49,34 @@ const submitComment = async () => {
 </script>
 
 <template>
-  <div class="add-comment-section bg-gray-800 p-6 rounded-lg shadow-md max-w-4xl mx-auto">
-    <h3 class="text-xl font-bold mb-4 text-white">{{ addCommentTitle }}</h3>
+  <div class="mx-auto max-w-4xl rounded-lg bg-gray-800 p-6 shadow-md add-comment-section">
+    <h3 class="mb-4 text-xl font-bold text-white">{{ addCommentTitle }}</h3>
 
     <input
         v-model="nickname"
         type="text"
         :placeholder="nicknamePlaceholder"
-        class="w-full p-3 mb-4 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+        class="mb-4 w-full rounded-lg border border-gray-600 bg-gray-700 p-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-red-600"
     />
 
     <textarea
         v-model="newComment"
         :placeholder="commentPlaceholder"
-        class="w-full p-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+        class="w-full rounded-lg border border-gray-600 bg-gray-700 p-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-red-600"
         rows="3"
     ></textarea>
 
-    <div class="flex gap-2 mt-4">
+    <div class="mt-4 flex gap-2">
       <button
           @click="toggleEmojiPicker"
-          class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300 shadow-md"
+          class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-800 shadow-md transition-colors duration-300 hover:bg-gray-100 hover:text-gray-900"
       >
         {{ toggleEmojiText }}
       </button>
 
       <button
           @click="submitComment"
-          class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300 shadow-md"
+          class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-800 shadow-md transition-colors duration-300 hover:bg-gray-100 hover:text-gray-900"
       >
         {{ submitCommentText }}
       </button>

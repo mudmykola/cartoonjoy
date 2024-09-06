@@ -10,12 +10,16 @@ const seasonTitle = 'Сезон';
 const buttonPreviousEpisode = 'Попередня серія';
 const buttonNextEpisode = 'Наступна серія';
 const buttonBackHome = 'На головну';
+const buttonAutoPlayOn = 'Автоперемикання увімкнено';
+const buttonAutoPlayOff = 'Автоперемикання вимкнено';
 
 const route = useRoute();
 const router = useRouter();
 const movieStore = useMovieStore();
 const episodePlayer = ref(null);
 const isLoading = ref(true);
+const videoElement = ref(null);
+const autoPlayEnabled = ref(true);
 
 onMounted(async () => {
   const movieId = parseInt(route.params.id);
@@ -49,35 +53,67 @@ watch(
   { immediate: true }
 );
 
-const getIframeSrc = (videoUrl) => videoUrl;
-
 const goBack = () => {
   router.push({ name: 'home' });
+};
+
+const handleVideoEnd = () => {
+  if (autoPlayEnabled.value) {
+    movieStore.playNextEpisode(
+      movieStore.movie.seasons.find(
+        (s) => s.seasonNumber === movieStore.selectedSeason
+      )
+    );
+  }
+};
+
+const toggleAutoPlay = () => {
+  autoPlayEnabled.value = !autoPlayEnabled.value;
 };
 </script>
 
 <template>
   <DefaultLayout>
     <div class="p-4 sm:p-6 max-w-full mx-auto bg-gray-900 text-white">
-      <button
-        @click="goBack"
-        class="mb-4 p-3 bg-red-600 text-white rounded-md flex items-center hover:bg-red-700 transition duration-300"
+      <div
+        class="mb-4 flex flex-col sm:flex-row sm:justify-between items-center"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-5 h-5 mr-2"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
+        <button
+          @click="goBack"
+          class="p-3 bg-gray-600 text-white rounded-md flex items-center hover:bg-red-700 transition duration-300 mb-4 sm:mb-0"
         >
-          <path
-            fill-rule="evenodd"
-            d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-        {{ buttonBackHome }}
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 mr-2"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          {{ buttonBackHome }}
+        </button>
+
+        <div class="flex items-center">
+          <span class="mr-4 text-white">
+            {{ autoPlayEnabled ? buttonAutoPlayOn : buttonAutoPlayOff }}
+          </span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only" v-model="autoPlayEnabled" />
+            <div class="w-10 h-6 bg-gray-600 rounded-full shadow-inner"></div>
+            <div
+              class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full shadow transform transition-transform"
+              :class="{
+                'translate-x-4': autoPlayEnabled,
+              }"
+            ></div>
+          </label>
+        </div>
+      </div>
 
       <div v-if="isLoading" class="flex justify-center items-center h-64">
         <div
@@ -155,16 +191,18 @@ const goBack = () => {
         </div>
 
         <div v-if="movieStore.currentEpisode" ref="episodePlayer" class="mt-6">
-          <h3 class="text-lg md:text-xl font-semibold mb-2">
+          <h3 class="text-lg text-white md:text-xl font-semibold mb-2">
             {{ movieStore.currentEpisode.title }}
           </h3>
-          <iframe
+          <video
+            ref="videoElement"
             v-if="movieStore.currentEpisode.videoUrl"
-            :src="getIframeSrc(movieStore.currentEpisode.videoUrl)"
+            :src="movieStore.currentEpisode.videoUrl"
             class="w-full h-[50vh] md:h-[60vh] rounded-md border border-gray-800 shadow-lg"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+            controls
+            autoplay
+            @ended="handleVideoEnd"
+          ></video>
         </div>
 
         <div
@@ -200,9 +238,6 @@ const goBack = () => {
         <div class="comment mt-8">
           <div v-if="movieStore.currentEpisode">
             <MovieComments :movieId="route.params.id" />
-          </div>
-
-          <div v-if="movieStore.currentEpisode" class="mt-6">
             <AddComment :movieId="route.params.id" />
           </div>
         </div>
@@ -213,7 +248,12 @@ const goBack = () => {
 
 <style scoped>
 .loader {
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #fa2b38;
+  border-width: 2px;
+  border-style: solid;
+  border-top-color: transparent;
+}
+
+.dot {
+  transition: transform 0.2s;
 }
 </style>

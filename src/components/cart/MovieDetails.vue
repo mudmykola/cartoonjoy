@@ -12,6 +12,8 @@ const buttonNextEpisode = 'Наступна серія';
 const buttonBackHome = 'На головну';
 const buttonAutoPlayOn = 'Автоперемикання увімкнено';
 const buttonAutoPlayOff = 'Автоперемикання вимкнено';
+const buttonShowComments = 'Показати коментарі';
+const buttonHideComments = 'Сховати коментарі';
 
 const route = useRoute();
 const router = useRouter();
@@ -20,6 +22,7 @@ const episodePlayer = ref(null);
 const isLoading = ref(true);
 const videoElement = ref(null);
 const autoPlayEnabled = ref(true);
+const showComments = ref(false);
 
 onMounted(async () => {
   const movieId = parseInt(route.params.id);
@@ -70,17 +73,30 @@ const handleVideoEnd = () => {
 const toggleAutoPlay = () => {
   autoPlayEnabled.value = !autoPlayEnabled.value;
 };
+
+const toggleComments = () => {
+  showComments.value = !showComments.value;
+};
 </script>
 
 <template>
   <DefaultLayout>
-    <div class="p-4 sm:p-6 max-w-full mx-auto bg-gray-900 text-white">
+    <div class="relative min-h-screen bg-gray-900 text-white">
       <div
-        class="mb-4 flex flex-col sm:flex-row sm:justify-between items-center"
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{
+          backgroundImage: `url(${movieStore.movie?.bgPosterUrl || movieStore.movie?.posterUrl})`,
+        }"
       >
+        <div
+          class="bg-gradient-to-t from-gray-900 via-gray-900 to-transparent h-full"
+        ></div>
+      </div>
+
+      <div class="relative p-4 sm:p-6 max-w-full mx-auto z-10">
         <button
           @click="goBack"
-          class="p-3 bg-gray-600 text-white rounded-md flex items-center hover:bg-red-700 transition duration-300 mb-4 sm:mb-0"
+          class="back-btn absolute top-4 left-4 p-3 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,148 +113,144 @@ const toggleAutoPlay = () => {
           </svg>
           {{ buttonBackHome }}
         </button>
-
-        <div class="flex items-center">
-          <span class="mr-4 text-white">
-            {{ autoPlayEnabled ? buttonAutoPlayOn : buttonAutoPlayOff }}
-          </span>
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only" v-model="autoPlayEnabled" />
-            <div class="w-10 h-6 bg-gray-600 rounded-full shadow-inner"></div>
-            <div
-              class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full shadow transform transition-transform"
-              :class="{
-                'translate-x-4': autoPlayEnabled,
-              }"
-            ></div>
-          </label>
+        <div v-if="isLoading" class="flex justify-center items-center h-screen">
+          <div
+            class="border-t-4 border-red-600 rounded-full w-16 h-16 animate-spin"
+          ></div>
         </div>
-      </div>
-
-      <div v-if="isLoading" class="flex justify-center items-center h-64">
-        <div
-          class="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"
-        ></div>
-      </div>
-
-      <div v-else>
-        <div v-if="movieStore.movie" class="flex flex-col md:flex-row">
-          <div class="flex-shrink-0 mb-6 md:mb-0 md:w-1/3">
+        <div v-else>
+          <div class="flex flex-col md:flex-row md:items-center">
             <img
-              :src="movieStore.movie.posterUrl"
+              :src="movieStore.movie?.posterUrl"
               alt="Movie Poster"
-              class="w-full h-64 md:h-80 object-cover rounded-md shadow-lg"
+              class="w-full md:w-80 h-64 md:h-96 object-cover rounded-md shadow-lg border-4 border-red-600"
             />
-          </div>
-
-          <div class="flex-1 md:pl-6">
-            <h1 class="text-2xl md:text-3xl font-bold mb-4">
-              {{ movieStore.movie.title }}
-            </h1>
-            <p class="text-sm md:text-base mb-4">
-              {{ movieStore.movie.description }}
-            </p>
-
-            <div class="max-h-80 overflow-y-auto">
-              <div
-                v-for="season in movieStore.movie.seasons"
-                :key="season.seasonNumber"
-                class="mb-6"
+            <div class="md:pl-6 mt-4 md:mt-0 flex-1">
+              <h1
+                class="text-2xl md:text-4xl font-bold mb-4 border-b-2 border-red-600 pb-2"
               >
-                <h2
-                  class="text-lg md:text-xl font-semibold mb-2 cursor-pointer flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition duration-300"
-                  @click="movieStore.toggleSeason(season.seasonNumber)"
-                >
-                  {{ seasonTitle }} {{ season.seasonNumber }}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    :class="{
-                      'rotate-180':
-                        movieStore.selectedSeason === season.seasonNumber,
-                    }"
-                    class="w-5 h-5 transform transition-transform duration-300"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </h2>
+                {{ movieStore.movie?.title }}
+              </h1>
+              <p class="text-sm md:text-lg mb-4">
+                {{ movieStore.movie?.description }}
+              </p>
 
-                <ul
-                  v-if="movieStore.selectedSeason === season.seasonNumber"
-                  class="list-disc list-inside pl-4"
+              <div class="space-y-4 md:space-y-6">
+                <div
+                  v-for="season in movieStore.movie?.seasons"
+                  :key="season.seasonNumber"
+                  class="bg-gray-800 p-4 rounded-md border-2 border-gray-700"
                 >
-                  <li
-                    v-for="episode in season.episodes"
-                    :key="episode.id"
-                    @click="movieStore.selectEpisode(episode)"
-                    :class="{
-                      'text-red-500': movieStore.currentEpisode === episode,
-                    }"
-                    class="mb-2 cursor-pointer hover:underline transition duration-300"
+                  <h2
+                    class="text-lg md:text-xl font-semibold mb-2 cursor-pointer flex items-center justify-between"
+                    @click="movieStore.toggleSeason(season.seasonNumber)"
                   >
-                    {{ episode.episodeNumber }}. {{ episode.title }}
-                  </li>
-                </ul>
+                    {{ seasonTitle }} {{ season.seasonNumber }}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{
+                        'rotate-180':
+                          movieStore.selectedSeason === season.seasonNumber,
+                      }"
+                      class="w-5 h-5 transform transition-transform duration-300"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </h2>
+
+                  <ul
+                    v-if="movieStore.selectedSeason === season.seasonNumber"
+                    class="list-disc list-inside pl-4"
+                  >
+                    <li
+                      v-for="episode in season.episodes"
+                      :key="episode.id"
+                      @click="movieStore.selectEpisode(episode)"
+                      :class="{
+                        'text-red-400': movieStore.currentEpisode === episode,
+                      }"
+                      class="mb-2 cursor-pointer hover:underline transition duration-300"
+                    >
+                      {{ episode.episodeNumber }}. {{ episode.title }}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div v-if="movieStore.currentEpisode" ref="episodePlayer" class="mt-6">
-          <h3 class="text-lg text-white md:text-xl font-semibold mb-2">
-            {{ movieStore.currentEpisode.title }}
-          </h3>
-          <video
-            ref="videoElement"
-            v-if="movieStore.currentEpisode.videoUrl"
-            :src="movieStore.currentEpisode.videoUrl"
-            class="w-full h-[50vh] md:h-[60vh] rounded-md border border-gray-800 shadow-lg"
-            controls
-            autoplay
-            @ended="handleVideoEnd"
-          ></video>
-        </div>
-
-        <div
-          v-if="movieStore.currentEpisode"
-          class="mt-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
-        >
-          <button
-            @click="
-              movieStore.playPreviousEpisode(
-                movieStore.movie.seasons.find(
-                  (s) => s.seasonNumber === movieStore.selectedSeason
-                )
-              )
-            "
-            class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300"
+          <div
+            v-if="movieStore.currentEpisode"
+            ref="episodePlayer"
+            class="mt-6"
           >
-            {{ buttonPreviousEpisode }}
-          </button>
-          <button
-            @click="
-              movieStore.playNextEpisode(
-                movieStore.movie.seasons.find(
-                  (s) => s.seasonNumber === movieStore.selectedSeason
-                )
-              )
-            "
-            class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300"
+            <h3
+              class="episode-player__title text-xl text-white md:text-2xl font-semibold mb-4 border-b-2 border-red-600 pb-2 flex items-center justify-between"
+            >
+              {{ movieStore.currentEpisode.title }}
+              <button
+                @click="toggleAutoPlay"
+                class="autoplay-btn px-4 py-2 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
+              >
+                {{ autoPlayEnabled ? buttonAutoPlayOn : buttonAutoPlayOff }}
+              </button>
+            </h3>
+            <video
+              ref="videoElement"
+              v-if="movieStore.currentEpisode.videoUrl"
+              :src="movieStore.currentEpisode.videoUrl"
+              class="w-full h-[50vh] md:h-[60vh] rounded-md border border-gray-800 shadow-lg"
+              controls
+              autoplay
+              @ended="handleVideoEnd"
+            ></video>
+          </div>
+          <div
+            v-if="movieStore.currentEpisode"
+            class="mt-6 flex flex-col md:flex-row md:space-x-4 justify-center space-y-4 md:space-y-0"
           >
-            {{ buttonNextEpisode }}
-          </button>
-        </div>
-
-        <div class="comment mt-8">
-          <div v-if="movieStore.currentEpisode">
-            <MovieComments :movieId="route.params.id" />
-            <AddComment :movieId="route.params.id" />
+            <button
+              @click="
+                movieStore.playPreviousEpisode(
+                  movieStore.movie.seasons.find(
+                    (s) => s.seasonNumber === movieStore.selectedSeason
+                  )
+                )
+              "
+              class="px-4 py-2 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
+            >
+              {{ buttonPreviousEpisode }}
+            </button>
+            <button
+              @click="
+                movieStore.playNextEpisode(
+                  movieStore.movie.seasons.find(
+                    (s) => s.seasonNumber === movieStore.selectedSeason
+                  )
+                )
+              "
+              class="px-4 py-2 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
+            >
+              {{ buttonNextEpisode }}
+            </button>
+          </div>
+          <div class="mt-6 flex justify-center">
+            <button
+              @click="toggleComments"
+              class="px-4 py-2 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
+            >
+              {{ showComments ? buttonHideComments : buttonShowComments }}
+            </button>
+          </div>
+          <div v-if="showComments" class="mt-6">
+            <AddComment />
+            <MovieComments />
           </div>
         </div>
       </div>
@@ -246,14 +258,31 @@ const toggleAutoPlay = () => {
   </DefaultLayout>
 </template>
 
-<style scoped>
-.loader {
-  border-width: 2px;
-  border-style: solid;
-  border-top-color: transparent;
+<style lang="scss" scoped>
+video {
+  max-width: 100%;
+  height: auto;
+}
+.autoplay-btn {
+  font-size: 18px;
+  line-height: 24px;
 }
 
-.dot {
-  transition: transform 0.2s;
+@media only screen and (max-width: 430px) {
+  .episode-player__title {
+    flex-direction: column;
+  }
+  .autoplay-btn {
+    font-size: 15px;
+    line-height: 15px;
+    background: red;
+    margin-left: auto;
+    display: block;
+  }
+  .back-btn {
+    top: 0;
+    font-size: 15px;
+    line-height: 15px;
+  }
 }
 </style>

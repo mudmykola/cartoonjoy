@@ -5,6 +5,7 @@ import { useMovieStore } from '@/stores/useMovieStore.js';
 import DefaultLayout from '../../layout/DefaultLayout.vue';
 import AddComment from '@/components/comments/AddCommentComponent.vue';
 import MovieComments from '@/components/comments/MovieCommentsComponent.vue';
+import LeftArrow from '@/components/icons/leftArrow.vue';
 
 const seasonTitle = 'Сезон';
 const buttonPreviousEpisode = 'Попередня серія';
@@ -98,19 +99,7 @@ const toggleComments = () => {
           @click="goBack"
           class="back-btn absolute top-4 left-4 p-3 bg-gray-800 text-white rounded-md flex items-center hover:bg-red-600 transition duration-300 shadow-lg"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 mr-2"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
+          <LeftArrow />
           {{ buttonBackHome }}
         </button>
         <div v-if="isLoading" class="flex justify-center items-center h-screen">
@@ -146,25 +135,13 @@ const toggleComments = () => {
                     @click="movieStore.toggleSeason(season.seasonNumber)"
                   >
                     {{ seasonTitle }} {{ season.seasonNumber }}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                    <LeftArrow
                       :class="{
                         'rotate-180':
                           movieStore.selectedSeason === season.seasonNumber,
                       }"
-                      class="w-5 h-5 transform transition-transform duration-300"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M14.293 6.293a1 1 0 011.414 1.414L11.414 12l4.293 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
+                    />
                   </h2>
-
                   <ul
                     v-if="movieStore.selectedSeason === season.seasonNumber"
                     class="list-disc list-inside pl-4"

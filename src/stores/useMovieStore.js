@@ -10,7 +10,7 @@ export const useMovieStore = defineStore('movie', () => {
     try {
       const response = await fetch('/data/cartoons.json');
       const data = await response.json();
-      movie.value = data.find((m) => m.id === movieId) || null;
+      movie.value = data.find((m) => m.id === Number(movieId)) || null;
 
       currentEpisode.value = null;
     } catch (error) {

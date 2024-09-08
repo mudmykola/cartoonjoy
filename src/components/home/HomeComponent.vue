@@ -2,6 +2,9 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useFavoritesStore } from '@/stores/useFavoritesStore.js';
+import IconClose from '@/components/icons/IconClose.vue';
+import IconFavorite from '@/components/icons/IconFavorite.vue';
+import IconFavoriteDone from '@/components/icons/IconFavoriteDone.vue';
 
 const welcomeMessage = 'Ласкаво просимо до CartoonJoy';
 const searchPlaceholder = 'Пошук мультфільмів...';
@@ -9,10 +12,14 @@ const newestOption = 'Найновіші';
 const oldestOption = 'Найстаріші';
 const featuredMoviesTitle = 'Найкращі мультфільми';
 const noResultsMessage = 'По вашому запиту нічого не найшло.';
+const loadMoreButtonText = 'Завантажити ще';
 
 const featuredMovies = ref([]);
 const searchQuery = ref('');
 const sortOption = ref('newest');
+const moviesPerPage = ref(8);
+const currentStartIndex = ref(0);
+const isLoading = ref(false);
 const router = useRouter();
 const favoritesStore = useFavoritesStore();
 
@@ -57,6 +64,19 @@ const sortedMovies = computed(() => {
   }
 });
 
+const displayedMovies = computed(() => {
+  return sortedMovies.value.slice(
+    0,
+    currentStartIndex.value + moviesPerPage.value
+  );
+});
+
+const hasMoreMovies = computed(() => {
+  return (
+    currentStartIndex.value + moviesPerPage.value < sortedMovies.value.length
+  );
+});
+
 const toggleFavorite = (movie) => {
   if (favoritesStore.isFavorite(movie.id)) {
     favoritesStore.removeFavorite(movie.id);
@@ -71,6 +91,18 @@ const isFavorite = (movieId) => {
 
 const navigateToMovie = (id) => {
   router.push({ name: 'movie', params: { id } });
+};
+
+const loadMoreMovies = async () => {
+  if (hasMoreMovies.value && !isLoading.value) {
+    isLoading.value = true;
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      currentStartIndex.value += moviesPerPage.value;
+    } finally {
+      isLoading.value = false;
+    }
+  }
 };
 </script>
 
@@ -92,20 +124,7 @@ const navigateToMovie = (id) => {
           @click="searchQuery = ''"
           class="absolute inset-y-0 right-0 px-4 py-2 text-sm bg-white text-black hover:text-white rounded-r-lg flex items-center justify-center hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition-all hover:transition-shadow"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <IconClose />
         </button>
       </div>
       <select
@@ -120,11 +139,11 @@ const navigateToMovie = (id) => {
     <section class="featured-section">
       <h2 class="text-2xl font-semibold mb-4">{{ featuredMoviesTitle }}</h2>
       <div
-        v-if="sortedMovies.length > 0"
+        v-if="displayedMovies.length > 0"
         class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
       >
         <div
-          v-for="movie in sortedMovies"
+          v-for="movie in displayedMovies"
           :key="movie.id"
           class="relative bg-white p-4 border rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow flex flex-col"
           @click="navigateToMovie(movie.id)"
@@ -139,36 +158,8 @@ const navigateToMovie = (id) => {
               @click.stop="toggleFavorite(movie)"
               class="absolute top-2 right-2 bg-red-600 text-white p-2 rounded-full shadow-lg border border-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 flex items-center justify-center"
             >
-              <svg
-                v-if="isFavorite(movie.id)"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5.121 9.879a3 3 0 114.242-4.242L12 6.585l2.637-2.948a3 3 0 114.242 4.242L12 14.415l-6.879-6.536z"
-                />
-              </svg>
-              <svg
-                v-else
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C12.09 3.81 13.76 3 15.5 3 18.58 3 21 5.42 21 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                />
-              </svg>
+              <IconFavorite v-if="isFavorite(movie.id)" />
+              <IconFavoriteDone v-else />
             </button>
           </div>
           <div class="flex-1 flex flex-col justify-between">
@@ -184,6 +175,26 @@ const navigateToMovie = (id) => {
       <div v-else>
         <p class="text-gray-500">{{ noResultsMessage }}</p>
       </div>
+      <div class="flex justify-center mt-4">
+        <button
+          v-if="hasMoreMovies"
+          @click="loadMoreMovies"
+          :disabled="isLoading"
+          class="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300 flex items-center"
+        >
+          <span v-if="!isLoading">{{ loadMoreButtonText }}</span>
+          <span
+            v-else
+            class="loader w-5 h-5 border-4 border-t-4 border-white border-opacity-25 rounded-full border-t-red-500 animate-spin"
+          ></span>
+        </button>
+      </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+.loader {
+  border-top-color: #fff;
+}
+</style>

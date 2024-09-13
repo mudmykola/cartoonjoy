@@ -124,7 +124,7 @@ const toggleComments = () => {
                 {{ movieStore.movie?.description }}
               </p>
 
-              <div class="space-y-4 md:space-y-6">
+              <div class="space-y-4 md:space-y-2">
                 <div
                   v-for="season in movieStore.movie?.seasons"
                   :key="season.seasonNumber"

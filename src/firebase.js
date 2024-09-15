@@ -15,4 +15,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const database = getDatabase(app);
-export { app, database };
+const CHAT_CLEAR_PASSWORD = import.meta.env.VITE_CHAT_CLEAR_PASSWORD;
+export { app, database, CHAT_CLEAR_PASSWORD };

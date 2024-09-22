@@ -109,7 +109,6 @@ const loadMoreMovies = async () => {
 <template>
   <div class="home-container p-4">
     <h1 class="text-3xl font-bold mb-4">{{ welcomeMessage }}</h1>
-
     <div
       class="flex flex-col gap-4 mb-4 sm:flex-row sm:justify-between sm:gap-2"
     >
@@ -135,7 +134,6 @@ const loadMoreMovies = async () => {
         <option value="oldest">{{ oldestOption }}</option>
       </select>
     </div>
-
     <section class="featured-section">
       <h2 class="text-2xl font-semibold mb-4">{{ featuredMoviesTitle }}</h2>
       <div
